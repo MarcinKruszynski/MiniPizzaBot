@@ -2,11 +2,14 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace MiniPizzaBot
 {
@@ -71,12 +74,11 @@ namespace MiniPizzaBot
                         
                         if (member.Id != activity.Recipient.Id)
                         {
-                            //var welcomeCard = CreateAdaptiveCardAttachment();
-                            //var response = CreateResponse(activity, welcomeCard);
+                            var welcomeCard = CreateAdaptiveCardAttachment();
+                            var response = CreateResponse(activity, welcomeCard);
                             //await dc.Context.SendActivityAsync(response);
-
-                            var responseMessage = $"Hi\n";
-                            await turnContext.SendActivityAsync(responseMessage);
+                            
+                            await turnContext.SendActivityAsync(response);
                         }
                     }
                 }
@@ -84,6 +86,23 @@ namespace MiniPizzaBot
 
             await _conversationState.SaveChangesAsync(turnContext);
             await _userState.SaveChangesAsync(turnContext);
+        }
+
+        private Activity CreateResponse(Activity activity, Attachment attachment)
+        {
+            var response = activity.CreateReply();
+            response.Attachments = new List<Attachment>() { attachment };
+            return response;
+        }
+
+        private Attachment CreateAdaptiveCardAttachment()
+        {
+            var adaptiveCard = File.ReadAllText(@".\Dialogs\Welcome\Resources\welcomeCard.json");
+            return new Attachment()
+            {
+                ContentType = "application/vnd.microsoft.card.adaptive",
+                Content = JsonConvert.DeserializeObject(adaptiveCard),
+            };
         }
     }
 }

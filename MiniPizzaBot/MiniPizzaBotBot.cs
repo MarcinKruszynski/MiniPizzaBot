@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -14,9 +15,18 @@ using Newtonsoft.Json;
 namespace MiniPizzaBot
 {
     public class MiniPizzaBotBot : IBot
-    {        
+    {
         private readonly ILogger _logger;
 
+        public const string OrderingIntent = "Ordering";
+        public const string CancelIntent = "Cancel";
+        public const string HelpIntent = "Help";
+        public const string NoneIntent = "None";        
+
+        public static readonly string LuisConfiguration = "";
+
+        private readonly IStatePropertyAccessor<OrderingState> _orderingStateAccessor;
+        private readonly IStatePropertyAccessor<DialogState> _dialogStateAccessor;
         private readonly UserState _userState;
         private readonly ConversationState _conversationState;
         private readonly BotServices _services;
@@ -40,7 +50,20 @@ namespace MiniPizzaBot
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _userState = userState ?? throw new ArgumentNullException(nameof(userState));
             _conversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
+
+            //_orderingStateAccessor = _userState.CreateProperty<OrderingState>(nameof(OrderingState));
+            //_dialogStateAccessor = _conversationState.CreateProperty<DialogState>(nameof(DialogState));
+
+            //if (!_services.LuisServices.ContainsKey(LuisConfiguration))
+            //{
+            //    throw new InvalidOperationException($"The bot configuration does not contain a service type of `luis` with the id `{LuisConfiguration}`.");
+            //}
+
+            //Dialogs = new DialogSet(_dialogStateAccessor);
+            //Dialogs.Add(new OrderingDialog(_orderingStateAccessor, loggerFactory));
         }
+
+        private DialogSet Dialogs { get; set; }
 
         /// <summary>
         /// Every conversation turn for our Echo Bot will call this method.

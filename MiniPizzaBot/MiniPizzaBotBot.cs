@@ -82,8 +82,60 @@ namespace MiniPizzaBot
         {
             var activity = turnContext.Activity;
 
+            //var dc = await Dialogs.CreateContextAsync(turnContext);
+
             if (activity.Type == ActivityTypes.Message)
             {
+                //var luisResults = await _services.LuisServices[LuisConfiguration].RecognizeAsync(dc.Context, cancellationToken);
+
+                //var topScoringIntent = luisResults?.GetTopScoringIntent();
+
+                //var topIntent = topScoringIntent.Value.intent;
+
+                //await UpdateOrderingState(luisResults, dc.Context);
+
+                //var interrupted = await IsTurnInterruptedAsync(dc, topIntent);
+                //if (interrupted)
+                //{                    
+                //    await _conversationState.SaveChangesAsync(turnContext);
+                //    await _userState.SaveChangesAsync(turnContext);
+                //    return;
+                //}
+
+                //var dialogResult = await dc.ContinueDialogAsync();
+
+                //if (!dc.Context.Responded)
+                //{                    
+                //    switch (dialogResult.Status)
+                //    {
+                //        case DialogTurnStatus.Empty:
+                //            switch (topIntent)
+                //            {
+                //                case OrderingIntent:
+                //                    await dc.BeginDialogAsync(nameof(OrderingDialog));
+                //                    break;
+
+                //                case NoneIntent:
+                //                default:                                    
+                //                    await dc.Context.SendActivityAsync("I didn't understand what you just said to me.");
+                //                    break;
+                //            }
+
+                //            break;
+
+                //        case DialogTurnStatus.Waiting:                            
+                //            break;
+
+                //        case DialogTurnStatus.Complete:
+                //            await dc.EndDialogAsync();
+                //            break;
+
+                //        default:
+                //            await dc.CancelAllDialogsAsync();
+                //            break;
+                //    }
+                //}
+
                 // Echo back to the user whatever they typed.
                 var responseMessage = $"You sent '{activity.Text}'\n";
                 await turnContext.SendActivityAsync(responseMessage);
@@ -111,6 +163,38 @@ namespace MiniPizzaBot
             await _userState.SaveChangesAsync(turnContext);
         }
 
+        private async Task<bool> IsTurnInterruptedAsync(DialogContext dc, string topIntent)
+        {            
+            if (topIntent.Equals(CancelIntent))
+            {
+                if (dc.ActiveDialog != null)
+                {
+                    await dc.CancelAllDialogsAsync();
+                    await dc.Context.SendActivityAsync("Ok. I've canceled our last activity.");
+                }
+                else
+                {
+                    await dc.Context.SendActivityAsync("I don't have anything to cancel.");
+                }
+
+                return true;        
+            }
+
+            if (topIntent.Equals(HelpIntent))
+            {
+                await dc.Context.SendActivityAsync("Let me try to provide some help.");
+                await dc.Context.SendActivityAsync("I order pizzas on Fridays, being asked for help, or being asked to cancel what I am doing.");
+                if (dc.ActiveDialog != null)
+                {
+                    await dc.RepromptDialogAsync();
+                }
+
+                return true;        
+            }
+
+            return false;           
+        }
+
         private Activity CreateResponse(Activity activity, Attachment attachment)
         {
             var response = activity.CreateReply();
@@ -126,6 +210,39 @@ namespace MiniPizzaBot
                 ContentType = "application/vnd.microsoft.card.adaptive",
                 Content = JsonConvert.DeserializeObject(adaptiveCard),
             };
+        }
+
+        private async Task UpdateOrderingState(RecognizerResult luisResult, ITurnContext turnContext)
+        {
+            if (luisResult.Entities != null && luisResult.Entities.HasValues)
+            {
+                var orderingState = await _orderingStateAccessor.GetAsync(turnContext, () => new OrderingState());
+                var entities = luisResult.Entities;
+
+                // LUIS Entities
+                string[] pizzaNameEntities = { "pizzaName", "pizzaName_patternAny" };
+                string[] pizzaPiecesEntities = { "pizzaPieces", "pizzaPieces_patternAny" };
+                
+                foreach (var name in pizzaNameEntities)
+                {                    
+                    if (entities[name] != null)
+                    {                        
+                        orderingState.PizzaName = (string)entities[name][0];
+                        break;
+                    }
+                }
+
+                foreach (var pieces in pizzaPiecesEntities)
+                {
+                    if (entities[pieces] != null)
+                    {                       
+                        orderingState.PizzaPieces = (byte)entities[pieces][0];
+                        break;
+                    }
+                }
+                
+                await _orderingStateAccessor.SetAsync(turnContext, orderingState);
+            }
         }
     }
 }

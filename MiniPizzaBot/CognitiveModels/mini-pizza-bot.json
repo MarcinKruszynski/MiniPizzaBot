@@ -1,0 +1,633 @@
+﻿{
+  "intents": [
+    {
+      "name": "Cancel"
+    },
+    {
+      "name": "Ordering"
+    },
+    {
+      "name": "Help"
+    },
+    {
+      "name": "None"
+    }
+  ],
+  "entities": [
+    {
+      "name": "pizzaName",
+      "roles": []
+    },
+    {
+      "name": "pizzaPieces",
+      "roles": []
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "regex_entities": [],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "please cancel",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "cancel",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "quit",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "stop",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "abort",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "don't do it",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "don't do that",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "i would like to cancel",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "no way",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "please stop",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "I'm bailing",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "Ordering",
+      "entities": []
+    },
+    {
+      "text": "hello bot",
+      "intent": "Ordering",
+      "entities": []
+    },
+    {
+      "text": "hey",
+      "intent": "Ordering",
+      "entities": []
+    },
+    {
+      "text": "hey there",
+      "intent": "Ordering",
+      "entities": []
+    },
+    {
+      "text": "hi",
+      "intent": "Ordering",
+      "entities": []
+    },
+    {
+      "text": "hi bot",
+      "intent": "Ordering",
+      "entities": []
+    },
+    {
+      "text": "hiya",
+      "intent": "Ordering",
+      "entities": []
+    },
+    {
+      "text": "yo",
+      "intent": "Ordering",
+      "entities": []
+    },
+    {
+      "text": "I want margaritta",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 7,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "capricciosa",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 0,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "vegetariana",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 0,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "green point",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 0,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "3",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaPieces",
+          "startPos": 0,
+          "endPos": 0
+        }
+      ]
+    },
+    {
+      "text": "2x",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaPieces",
+          "startPos": 0,
+          "endPos": 0
+        }
+      ]
+    },
+    {
+      "text": "3 x",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaPieces",
+          "startPos": 0,
+          "endPos": 0
+        }
+      ]
+    },
+    {
+      "text": "4 pieces",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaPieces",
+          "startPos": 0,
+          "endPos": 0
+        }
+      ]
+    },
+    {
+      "text": "two pieces",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaPieces",
+          "startPos": 0,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "i want 3 pieces",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaPieces",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "three pieces please",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaPieces",
+          "startPos": 0,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "3x cheese please",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaPieces",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "pizzaName",
+          "startPos": 3,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "2 Green point",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaPieces",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "pizzaName",
+          "startPos": 2,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "2 rustica",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaPieces",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "pizzaName",
+          "startPos": 2,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "I want 2 vege",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaPieces",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "pizzaName",
+          "startPos": 9,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "4 x americana",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaPieces",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "pizzaName",
+          "startPos": 4,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "2x Italiana",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaPieces",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "pizzaName",
+          "startPos": 3,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "3 times cheese, please",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaPieces",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "pizzaName",
+          "startPos": 8,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "cheese x2",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "pizzaName",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },    
+    {
+      "text": "what can you do",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "?",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "I'm lost",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "lost",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "confused",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "frustrated",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "what are your capabilities",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "help me",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "help",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "how do I interact with you",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "help please",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "i'm stuck",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "i don't understand",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "what can I say",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "what can you help me with",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "what do i do now",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "why doesn't this work",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "can you help me",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "gas",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "plane",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "her cat has no teeth",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "world wide pants",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i'd rather be riding my bike",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "Cook me something",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "Have you any dreams?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "Dont you ever sleep?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "Do you play games?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "Can you fly?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "What's your age?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "Are you old?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "How old are you?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "Getting tired of you",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "I am tired of you",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "You are boring",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "Who is your boss?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "Are you busy?",
+      "intent": "None",
+      "entities": []
+    }
+  ],
+  "patterns": [
+    {
+      "pattern": "some people call me {userName_patternAny}",
+      "intent": "Greeting"
+    },
+    {
+      "pattern": "{userName_patternAny}.",
+      "intent": "Greeting"
+    },
+    {
+      "pattern": "i'm {userName_patternAny}",
+      "intent": "Greeting"
+    },
+    {
+      "pattern": "{userName_patternAny} is my name",
+      "intent": "Greeting"
+    },
+    {
+      "pattern": "my name is {userName_patternAny} and i'm from {userLocation_patternAny}",
+      "intent": "Greeting"
+    },
+    {
+      "pattern": "{userLocation_patternAny} is where i live",
+      "intent": "Greeting"
+    },
+    {
+      "pattern": "i'm from {userLocation_patternAny}",
+      "intent": "Greeting"
+    },
+    {
+      "pattern": "my name is {userName_patternAny}",
+      "intent": "Greeting"
+    },
+    {
+      "pattern": "i reside in {userLocation_patternAny}",
+      "intent": "Greeting"
+    },
+    {
+      "pattern": "you can call me {userName_patternAny}",
+      "intent": "Greeting"
+    },
+    {
+      "pattern": "you can assume i live in {userLocation_patternAny}",
+      "intent": "Greeting"
+    },
+    {
+      "pattern": "call me {userName_patternAny}",
+      "intent": "Greeting"
+    },
+    {
+      "pattern": "i live in {userLocation_patternAny}",
+      "intent": "Greeting"
+    },
+    {
+      "pattern": "i'm {userName_patternAny}[,] [and i'm] from {userLocation_patternAny}",
+      "intent": "Greeting"
+    }
+  ],
+  "patternAnyEntities": [
+    {
+      "name": "userName_patternAny",
+      "explicitList": [],
+      "roles": []
+    },
+    {
+      "name": "userLocation_patternAny",
+      "explicitList": [],
+      "roles": []
+    }
+  ],
+  "prebuiltEntities": [],
+  "luis_schema_version": "3.0.0",
+  "versionId": "0.1",
+  "name": "basic-bot-LUIS",
+  "desc": "A BotBuilder generated bot",
+  "culture": "en-us"
+}

@@ -23,7 +23,7 @@ namespace MiniPizzaBot
         public const string HelpIntent = "Help";
         public const string NoneIntent = "None";        
 
-        public static readonly string LuisConfiguration = "";
+        public static readonly string LuisConfiguration = "mini-pizza-bot-LUIS";
 
         private readonly IStatePropertyAccessor<OrderingState> _orderingStateAccessor;
         private readonly IStatePropertyAccessor<DialogState> _dialogStateAccessor;
@@ -51,16 +51,16 @@ namespace MiniPizzaBot
             _userState = userState ?? throw new ArgumentNullException(nameof(userState));
             _conversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
 
-            //_orderingStateAccessor = _userState.CreateProperty<OrderingState>(nameof(OrderingState));
-            //_dialogStateAccessor = _conversationState.CreateProperty<DialogState>(nameof(DialogState));
+            _orderingStateAccessor = _userState.CreateProperty<OrderingState>(nameof(OrderingState));
+            _dialogStateAccessor = _conversationState.CreateProperty<DialogState>(nameof(DialogState));
 
-            //if (!_services.LuisServices.ContainsKey(LuisConfiguration))
-            //{
-            //    throw new InvalidOperationException($"The bot configuration does not contain a service type of `luis` with the id `{LuisConfiguration}`.");
-            //}
+            if (!_services.LuisServices.ContainsKey(LuisConfiguration))
+            {
+                throw new InvalidOperationException($"The bot configuration does not contain a service type of `luis` with the id `{LuisConfiguration}`.");
+            }
 
-            //Dialogs = new DialogSet(_dialogStateAccessor);
-            //Dialogs.Add(new OrderingDialog(_orderingStateAccessor, loggerFactory));
+            Dialogs = new DialogSet(_dialogStateAccessor);
+            Dialogs.Add(new OrderingDialog(_orderingStateAccessor, loggerFactory));
         }
 
         private DialogSet Dialogs { get; set; }
@@ -82,63 +82,59 @@ namespace MiniPizzaBot
         {
             var activity = turnContext.Activity;
 
-            //var dc = await Dialogs.CreateContextAsync(turnContext);
+            var dc = await Dialogs.CreateContextAsync(turnContext);
 
             if (activity.Type == ActivityTypes.Message)
             {
-                //var luisResults = await _services.LuisServices[LuisConfiguration].RecognizeAsync(dc.Context, cancellationToken);
+                var luisResults = await _services.LuisServices[LuisConfiguration].RecognizeAsync(dc.Context, cancellationToken);
 
-                //var topScoringIntent = luisResults?.GetTopScoringIntent();
+                var topScoringIntent = luisResults?.GetTopScoringIntent();
 
-                //var topIntent = topScoringIntent.Value.intent;
+                var topIntent = topScoringIntent.Value.intent;
 
-                //await UpdateOrderingState(luisResults, dc.Context);
+                await UpdateOrderingState(luisResults, dc.Context);
 
-                //var interrupted = await IsTurnInterruptedAsync(dc, topIntent);
-                //if (interrupted)
-                //{                    
-                //    await _conversationState.SaveChangesAsync(turnContext);
-                //    await _userState.SaveChangesAsync(turnContext);
-                //    return;
-                //}
+                var interrupted = await IsTurnInterruptedAsync(dc, topIntent);
+                if (interrupted)
+                {
+                    await _conversationState.SaveChangesAsync(turnContext);
+                    await _userState.SaveChangesAsync(turnContext);
+                    return;
+                }
 
-                //var dialogResult = await dc.ContinueDialogAsync();
+                var dialogResult = await dc.ContinueDialogAsync();
 
-                //if (!dc.Context.Responded)
-                //{                    
-                //    switch (dialogResult.Status)
-                //    {
-                //        case DialogTurnStatus.Empty:
-                //            switch (topIntent)
-                //            {
-                //                case OrderingIntent:
-                //                    await dc.BeginDialogAsync(nameof(OrderingDialog));
-                //                    break;
+                if (!dc.Context.Responded)
+                {
+                    switch (dialogResult.Status)
+                    {
+                        case DialogTurnStatus.Empty:
+                            switch (topIntent)
+                            {
+                                case OrderingIntent:
+                                    await dc.BeginDialogAsync(nameof(OrderingDialog));
+                                    break;
 
-                //                case NoneIntent:
-                //                default:                                    
-                //                    await dc.Context.SendActivityAsync("I didn't understand what you just said to me.");
-                //                    break;
-                //            }
+                                case NoneIntent:
+                                default:
+                                    await dc.Context.SendActivityAsync("I didn't understand what you just said to me.");
+                                    break;
+                            }
 
-                //            break;
+                            break;
 
-                //        case DialogTurnStatus.Waiting:                            
-                //            break;
+                        case DialogTurnStatus.Waiting:
+                            break;
 
-                //        case DialogTurnStatus.Complete:
-                //            await dc.EndDialogAsync();
-                //            break;
+                        case DialogTurnStatus.Complete:
+                            await dc.EndDialogAsync();
+                            break;
 
-                //        default:
-                //            await dc.CancelAllDialogsAsync();
-                //            break;
-                //    }
-                //}
-
-                // Echo back to the user whatever they typed.
-                var responseMessage = $"You sent '{activity.Text}'\n";
-                await turnContext.SendActivityAsync(responseMessage);
+                        default:
+                            await dc.CancelAllDialogsAsync();
+                            break;
+                    }
+                }                
             }
             else if (activity.Type == ActivityTypes.ConversationUpdate)
             {
@@ -151,9 +147,7 @@ namespace MiniPizzaBot
                         {
                             var welcomeCard = CreateAdaptiveCardAttachment();
                             var response = CreateResponse(activity, welcomeCard);
-                            //await dc.Context.SendActivityAsync(response);
-                            
-                            await turnContext.SendActivityAsync(response);
+                            await dc.Context.SendActivityAsync(response);                          
                         }
                     }
                 }

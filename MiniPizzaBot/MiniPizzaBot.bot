@@ -1,5 +1,6 @@
 ﻿{
   "name": "MiniPizzaBot",
+  "description": "",
   "services": [
     {
       "type": "endpoint",
@@ -8,6 +9,16 @@
       "appId": "",
       "appPassword": "",
       "id": "1"
+    },
+    {
+      "type": "luis",
+      "name": "mini-pizza-bot-LUIS",
+      "appId": "76d69fad-64d6-4325-9bc7-1020cb4cb84b",
+      "authoringKey": "de533848aef84698b3824b63aba07a98",
+      "subscriptionKey": "de533848aef84698b3824b63aba07a98",
+      "version": "0.1",
+      "region": "westus",
+      "id": "34"
     }
   ],
   "padlock": "",

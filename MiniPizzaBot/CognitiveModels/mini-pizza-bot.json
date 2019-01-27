@@ -372,7 +372,7 @@
           "endPos": 8
         }
       ]
-    },    
+    },
     {
       "text": "what can you do",
       "intent": "Help",
@@ -556,61 +556,65 @@
   ],
   "patterns": [
     {
-      "pattern": "some people call me {userName_patternAny}",
-      "intent": "Greeting"
+      "pattern": "I want {pizzaName_patternAny}",
+      "intent": "Ordering"
     },
     {
-      "pattern": "{userName_patternAny}.",
-      "intent": "Greeting"
+      "pattern": "{pizzaName_patternAny}",
+      "intent": "Ordering"
     },
     {
-      "pattern": "i'm {userName_patternAny}",
-      "intent": "Greeting"
+      "pattern": "{pizzaPieces_patternAny}",
+      "intent": "Ordering"
     },
     {
-      "pattern": "{userName_patternAny} is my name",
-      "intent": "Greeting"
+      "pattern": "{pizzaPieces_patternAny}x",
+      "intent": "Ordering"
     },
     {
-      "pattern": "my name is {userName_patternAny} and i'm from {userLocation_patternAny}",
-      "intent": "Greeting"
+      "pattern": "{pizzaPieces_patternAny} x",
+      "intent": "Ordering"
     },
     {
-      "pattern": "{userLocation_patternAny} is where i live",
-      "intent": "Greeting"
+      "pattern": "{pizzaPieces_patternAny} pieces",
+      "intent": "Ordering"
     },
     {
-      "pattern": "i'm from {userLocation_patternAny}",
-      "intent": "Greeting"
+      "pattern": "i want {pizzaPieces_patternAny} pieces",
+      "intent": "Ordering"
     },
     {
-      "pattern": "my name is {userName_patternAny}",
-      "intent": "Greeting"
+      "pattern": "{pizzaPieces_patternAny} pieces please",
+      "intent": "Ordering"
     },
     {
-      "pattern": "i reside in {userLocation_patternAny}",
-      "intent": "Greeting"
+      "pattern": "{pizzaPieces_patternAny}x {pizzaName_patternAny} please",
+      "intent": "Ordering"
     },
     {
-      "pattern": "you can call me {userName_patternAny}",
-      "intent": "Greeting"
+      "pattern": "{pizzaPieces_patternAny} {pizzaName_patternAny}",
+      "intent": "Ordering"
     },
     {
-      "pattern": "you can assume i live in {userLocation_patternAny}",
-      "intent": "Greeting"
+      "pattern": "I want {pizzaPieces_patternAny} {pizzaName_patternAny}",
+      "intent": "Ordering"
     },
     {
-      "pattern": "call me {userName_patternAny}",
-      "intent": "Greeting"
+      "pattern": "{pizzaPieces_patternAny} x {pizzaName_patternAny}",
+      "intent": "Ordering"
     },
     {
-      "pattern": "i live in {userLocation_patternAny}",
-      "intent": "Greeting"
+      "pattern": "{pizzaPieces_patternAny}x {pizzaName_patternAny}",
+      "intent": "Ordering"
     },
     {
-      "pattern": "i'm {userName_patternAny}[,] [and i'm] from {userLocation_patternAny}",
-      "intent": "Greeting"
-    }
+      "pattern": "{pizzaPieces_patternAny} times {pizzaName_patternAny}, please",
+      "intent": "Ordering"
+    },
+    {
+      "pattern": "{pizzaName_patternAny} x{pizzaPieces_patternAny}",
+      "intent": "Ordering"
+    }    
   ],
   "patternAnyEntities": [
     {

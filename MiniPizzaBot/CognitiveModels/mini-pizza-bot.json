@@ -618,12 +618,12 @@
   ],
   "patternAnyEntities": [
     {
-      "name": "userName_patternAny",
+      "name": "pizzaName_patternAny",
       "explicitList": [],
       "roles": []
     },
     {
-      "name": "userLocation_patternAny",
+      "name": "pizzaPieces_patternAny",
       "explicitList": [],
       "roles": []
     }

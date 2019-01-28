@@ -9,6 +9,6 @@ namespace MiniPizzaBot
     {
         public string PizzaName { get; set; }
 
-        public byte? PizzaPieces { get; set; }
+        public int? PizzaPieces { get; set; }
     }
 }

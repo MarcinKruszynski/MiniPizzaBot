@@ -20,8 +20,8 @@ namespace MiniPizzaBot
         private const string PizzaPiecesPrompt = "pizzaPiecesPrompt";
 
         private const int PizzaNameLengthMinValue = 3;
-        private const byte MinPizzaPieces = 1;
-        private const byte MaxPizzaPieces = 4;
+        private const int MinPizzaPieces = 1;
+        private const int MaxPizzaPieces = 4;
 
         private const string OrderDialog = "orderDialog";
 
@@ -40,7 +40,7 @@ namespace MiniPizzaBot
             };
             AddDialog(new WaterfallDialog(OrderDialog, waterfallSteps));
             AddDialog(new TextPrompt(PizzaNamePrompt, ValidatePizzaName));
-            AddDialog(new NumberPrompt<byte>(PizzaPiecesPrompt, ValidatePizzaPieces));
+            AddDialog(new NumberPrompt<int>(PizzaPiecesPrompt, ValidatePizzaPieces));
         }
 
         public IStatePropertyAccessor<OrderingState> OrderingStateAccessor { get; }
@@ -124,7 +124,7 @@ namespace MiniPizzaBot
         {
             var orderingState = await OrderingStateAccessor.GetAsync(stepContext.Context);
 
-            var pizzaPieces = stepContext.Result as byte?;
+            var pizzaPieces = stepContext.Result as int?;
 
             if (!orderingState.PizzaPieces.HasValue && pizzaPieces.HasValue)
             {
@@ -150,7 +150,7 @@ namespace MiniPizzaBot
             }
         }
 
-        private async Task<bool> ValidatePizzaPieces(PromptValidatorContext<byte> promptContext, CancellationToken cancellationToken)
+        private async Task<bool> ValidatePizzaPieces(PromptValidatorContext<int> promptContext, CancellationToken cancellationToken)
         {            
             var value = promptContext.Recognized.Value;
 

@@ -230,7 +230,7 @@ namespace MiniPizzaBot
                 {
                     if (entities[pieces] != null)
                     { 
-                        if (byte.TryParse((string)entities[pieces][0], out byte num))
+                        if (int.TryParse((string)entities[pieces][0], out int num))
                         {
                             orderingState.PizzaPieces = num;
                             break;

@@ -171,7 +171,7 @@ namespace MiniPizzaBot
             var context = stepContext.Context;
             var orderingState = await OrderingStateAccessor.GetAsync(context);
             
-            await context.SendActivityAsync($"{orderingState.PizzaName} {orderingState.PizzaPieces}");
+            await context.SendActivityAsync($"Your order: {orderingState.PizzaName} {orderingState.PizzaPieces}");
             return await stepContext.EndDialogAsync();
         }
     }

@@ -13,7 +13,7 @@
     {
       "type": "luis",
       "name": "mini-pizza-bot-LUIS",
-      "appId": "76d69fad-64d6-4325-9bc7-1020cb4cb84b",
+      "appId": "522f4190-2df5-4d4a-83f8-07b8e1a49539",
       "authoringKey": "de533848aef84698b3824b63aba07a98",
       "subscriptionKey": "de533848aef84698b3824b63aba07a98",
       "version": "0.1",

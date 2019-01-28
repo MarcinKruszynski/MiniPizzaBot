@@ -215,7 +215,7 @@ namespace MiniPizzaBot
 
                 // LUIS Entities
                 string[] pizzaNameEntities = { "pizzaName", "pizzaName_patternAny" };
-                string[] pizzaPiecesEntities = { "pizzaPieces", "pizzaPieces_patternAny" };
+                string[] pizzaPiecesEntities = { "number", "pizzaPieces_patternAny" };
                 
                 foreach (var name in pizzaNameEntities)
                 {                    

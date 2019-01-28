@@ -1,37 +1,209 @@
-﻿{
+{
+  "luis_schema_version": "3.2.0",
+  "versionId": "0.1",
+  "name": "mini-pizza-bot-LUIS",
+  "desc": "ordering pizza",
+  "culture": "en-us",
+  "tokenizerVersion": "1.0.0",
   "intents": [
     {
       "name": "Cancel"
-    },
-    {
-      "name": "Ordering"
     },
     {
       "name": "Help"
     },
     {
       "name": "None"
+    },
+    {
+      "name": "Ordering"
     }
   ],
   "entities": [
     {
       "name": "pizzaName",
       "roles": []
-    },
-    {
-      "name": "pizzaPieces",
-      "roles": []
     }
   ],
   "composites": [],
   "closedLists": [],
+  "patternAnyEntities": [
+    {
+      "name": "number_patternAny",
+      "explicitList": [],
+      "roles": []
+    },
+    {
+      "name": "pizzaName_patternAny",
+      "explicitList": [],
+      "roles": []
+    }
+  ],
   "regex_entities": [],
+  "prebuiltEntities": [
+    {
+      "name": "number",
+      "roles": []
+    }
+  ],
   "model_features": [],
   "regex_features": [],
+  "patterns": [
+    {
+      "pattern": "{number_patternAny} x {pizzaName_patternAny} please",
+      "intent": "Ordering"
+    },
+    {
+      "pattern": "{number_patternAny} pieces please",
+      "intent": "Ordering"
+    },
+    {
+      "pattern": "i want {number_patternAny} pieces",
+      "intent": "Ordering"
+    },
+    {
+      "pattern": "{number_patternAny} x",
+      "intent": "Ordering"
+    },
+    {
+      "pattern": "{number_patternAny} times {pizzaName_patternAny}, please",
+      "intent": "Ordering"
+    },
+    {
+      "pattern": "i want {pizzaName_patternAny}",
+      "intent": "Ordering"
+    },
+    {
+      "pattern": "{number_patternAny}",
+      "intent": "Ordering"
+    },
+    {
+      "pattern": "{pizzaName_patternAny}",
+      "intent": "Ordering"
+    },
+    {
+      "pattern": "{pizzaName_patternAny} x {number_patternAny}",
+      "intent": "Ordering"
+    },
+    {
+      "pattern": "{number_patternAny} x {pizzaName_patternAny}",
+      "intent": "Ordering"
+    },
+    {
+      "pattern": "{number_patternAny} pieces",
+      "intent": "Ordering"
+    }
+  ],
   "utterances": [
     {
-      "text": "please cancel",
+      "text": "?",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "2 green point",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 2,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "2 rustica",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 2,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "2 x italiana",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 4,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "3",
+      "intent": "Ordering",
+      "entities": []
+    },
+    {
+      "text": "3 times cheese, please",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 8,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "3 x",
+      "intent": "Ordering",
+      "entities": []
+    },
+    {
+      "text": "3 x cheese please",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 4,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "4 pieces",
+      "intent": "Ordering",
+      "entities": []
+    },
+    {
+      "text": "4 x americana",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 4,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "abort",
       "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "are you busy?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "are you old?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "can you fly?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "can you help me",
+      "intent": "Help",
       "entities": []
     },
     {
@@ -40,18 +212,40 @@
       "entities": []
     },
     {
-      "text": "quit",
-      "intent": "Cancel",
+      "text": "capricciosa",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 0,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "cheese x 2",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "confused",
+      "intent": "Help",
       "entities": []
     },
     {
-      "text": "stop",
-      "intent": "Cancel",
+      "text": "cook me something",
+      "intent": "None",
       "entities": []
     },
     {
-      "text": "abort",
-      "intent": "Cancel",
+      "text": "do you play games?",
+      "intent": "None",
       "entities": []
     },
     {
@@ -65,23 +259,39 @@
       "entities": []
     },
     {
-      "text": "i would like to cancel",
-      "intent": "Cancel",
+      "text": "dont you ever sleep?",
+      "intent": "None",
       "entities": []
     },
     {
-      "text": "no way",
-      "intent": "Cancel",
+      "text": "frustrated",
+      "intent": "Help",
       "entities": []
     },
     {
-      "text": "please stop",
-      "intent": "Cancel",
+      "text": "gas",
+      "intent": "None",
       "entities": []
     },
     {
-      "text": "I'm bailing",
-      "intent": "Cancel",
+      "text": "getting tired of you",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "green point",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 0,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "have you any dreams?",
+      "intent": "None",
       "entities": []
     },
     {
@@ -92,6 +302,26 @@
     {
       "text": "hello bot",
       "intent": "Ordering",
+      "entities": []
+    },
+    {
+      "text": "help",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "help me",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "help please",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "her cat has no teeth",
+      "intent": "None",
       "entities": []
     },
     {
@@ -120,12 +350,43 @@
       "entities": []
     },
     {
-      "text": "yo",
+      "text": "how do i interact with you",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "how old are you?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i am tired of you",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i don't understand",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "i want 2 vege",
+      "intent": "Ordering",
+      "entities": [
+        {
+          "entity": "pizzaName",
+          "startPos": 9,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "i want 3 pieces",
       "intent": "Ordering",
       "entities": []
     },
     {
-      "text": "I want margaritta",
+      "text": "i want margaritta",
       "intent": "Ordering",
       "entities": [
         {
@@ -136,15 +397,74 @@
       ]
     },
     {
-      "text": "capricciosa",
+      "text": "i would like to cancel",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "i'd rather be riding my bike",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i'm bailing",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "i'm lost",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "i'm stuck",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "lost",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "no way",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "plane",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "please cancel",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "please stop",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "quit",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "stop",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "three pieces please",
       "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaName",
-          "startPos": 0,
-          "endPos": 10
-        }
-      ]
+      "entities": []
+    },
+    {
+      "text": "two pieces",
+      "intent": "Ordering",
+      "entities": []
     },
     {
       "text": "vegetariana",
@@ -158,288 +478,17 @@
       ]
     },
     {
-      "text": "green point",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaName",
-          "startPos": 0,
-          "endPos": 10
-        }
-      ]
-    },
-    {
-      "text": "3",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaPieces",
-          "startPos": 0,
-          "endPos": 0
-        }
-      ]
-    },
-    {
-      "text": "2x",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaPieces",
-          "startPos": 0,
-          "endPos": 0
-        }
-      ]
-    },
-    {
-      "text": "3 x",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaPieces",
-          "startPos": 0,
-          "endPos": 0
-        }
-      ]
-    },
-    {
-      "text": "4 pieces",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaPieces",
-          "startPos": 0,
-          "endPos": 0
-        }
-      ]
-    },
-    {
-      "text": "two pieces",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaPieces",
-          "startPos": 0,
-          "endPos": 2
-        }
-      ]
-    },
-    {
-      "text": "i want 3 pieces",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaPieces",
-          "startPos": 7,
-          "endPos": 7
-        }
-      ]
-    },
-    {
-      "text": "three pieces please",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaPieces",
-          "startPos": 0,
-          "endPos": 4
-        }
-      ]
-    },
-    {
-      "text": "3x cheese please",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaPieces",
-          "startPos": 0,
-          "endPos": 0
-        },
-        {
-          "entity": "pizzaName",
-          "startPos": 3,
-          "endPos": 8
-        }
-      ]
-    },
-    {
-      "text": "2 Green point",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaPieces",
-          "startPos": 0,
-          "endPos": 0
-        },
-        {
-          "entity": "pizzaName",
-          "startPos": 2,
-          "endPos": 12
-        }
-      ]
-    },
-    {
-      "text": "2 rustica",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaPieces",
-          "startPos": 0,
-          "endPos": 0
-        },
-        {
-          "entity": "pizzaName",
-          "startPos": 2,
-          "endPos": 8
-        }
-      ]
-    },
-    {
-      "text": "I want 2 vege",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaPieces",
-          "startPos": 7,
-          "endPos": 7
-        },
-        {
-          "entity": "pizzaName",
-          "startPos": 9,
-          "endPos": 12
-        }
-      ]
-    },
-    {
-      "text": "4 x americana",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaPieces",
-          "startPos": 0,
-          "endPos": 0
-        },
-        {
-          "entity": "pizzaName",
-          "startPos": 4,
-          "endPos": 12
-        }
-      ]
-    },
-    {
-      "text": "2x Italiana",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaPieces",
-          "startPos": 0,
-          "endPos": 0
-        },
-        {
-          "entity": "pizzaName",
-          "startPos": 3,
-          "endPos": 10
-        }
-      ]
-    },
-    {
-      "text": "3 times cheese, please",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaPieces",
-          "startPos": 0,
-          "endPos": 0
-        },
-        {
-          "entity": "pizzaName",
-          "startPos": 8,
-          "endPos": 13
-        }
-      ]
-    },
-    {
-      "text": "cheese x2",
-      "intent": "Ordering",
-      "entities": [
-        {
-          "entity": "pizzaName",
-          "startPos": 0,
-          "endPos": 5
-        },
-        {
-          "entity": "pizzaName",
-          "startPos": 8,
-          "endPos": 8
-        }
-      ]
-    },
-    {
-      "text": "what can you do",
-      "intent": "Help",
-      "entities": []
-    },
-    {
-      "text": "?",
-      "intent": "Help",
-      "entities": []
-    },
-    {
-      "text": "I'm lost",
-      "intent": "Help",
-      "entities": []
-    },
-    {
-      "text": "lost",
-      "intent": "Help",
-      "entities": []
-    },
-    {
-      "text": "confused",
-      "intent": "Help",
-      "entities": []
-    },
-    {
-      "text": "frustrated",
-      "intent": "Help",
-      "entities": []
-    },
-    {
       "text": "what are your capabilities",
       "intent": "Help",
       "entities": []
     },
     {
-      "text": "help me",
+      "text": "what can i say",
       "intent": "Help",
       "entities": []
     },
     {
-      "text": "help",
-      "intent": "Help",
-      "entities": []
-    },
-    {
-      "text": "how do I interact with you",
-      "intent": "Help",
-      "entities": []
-    },
-    {
-      "text": "help please",
-      "intent": "Help",
-      "entities": []
-    },
-    {
-      "text": "i'm stuck",
-      "intent": "Help",
-      "entities": []
-    },
-    {
-      "text": "i don't understand",
-      "intent": "Help",
-      "entities": []
-    },
-    {
-      "text": "what can I say",
+      "text": "what can you do",
       "intent": "Help",
       "entities": []
     },
@@ -454,28 +503,18 @@
       "entities": []
     },
     {
+      "text": "what's your age?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who is your boss?",
+      "intent": "None",
+      "entities": []
+    },
+    {
       "text": "why doesn't this work",
       "intent": "Help",
-      "entities": []
-    },
-    {
-      "text": "can you help me",
-      "intent": "Help",
-      "entities": []
-    },
-    {
-      "text": "gas",
-      "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "plane",
-      "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "her cat has no teeth",
-      "intent": "None",
       "entities": []
     },
     {
@@ -484,154 +523,15 @@
       "entities": []
     },
     {
-      "text": "i'd rather be riding my bike",
-      "intent": "None",
+      "text": "yo",
+      "intent": "Ordering",
       "entities": []
     },
     {
-      "text": "Cook me something",
-      "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "Have you any dreams?",
-      "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "Dont you ever sleep?",
-      "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "Do you play games?",
-      "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "Can you fly?",
-      "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "What's your age?",
-      "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "Are you old?",
-      "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "How old are you?",
-      "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "Getting tired of you",
-      "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "I am tired of you",
-      "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "You are boring",
-      "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "Who is your boss?",
-      "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "Are you busy?",
+      "text": "you are boring",
       "intent": "None",
       "entities": []
     }
   ],
-  "patterns": [
-    {
-      "pattern": "I want {pizzaName_patternAny}",
-      "intent": "Ordering"
-    },
-    {
-      "pattern": "{pizzaName_patternAny}",
-      "intent": "Ordering"
-    },
-    {
-      "pattern": "{pizzaPieces_patternAny}",
-      "intent": "Ordering"
-    },
-    {
-      "pattern": "{pizzaPieces_patternAny}x",
-      "intent": "Ordering"
-    },
-    {
-      "pattern": "{pizzaPieces_patternAny} x",
-      "intent": "Ordering"
-    },
-    {
-      "pattern": "{pizzaPieces_patternAny} pieces",
-      "intent": "Ordering"
-    },
-    {
-      "pattern": "i want {pizzaPieces_patternAny} pieces",
-      "intent": "Ordering"
-    },
-    {
-      "pattern": "{pizzaPieces_patternAny} pieces please",
-      "intent": "Ordering"
-    },
-    {
-      "pattern": "{pizzaPieces_patternAny}x {pizzaName_patternAny} please",
-      "intent": "Ordering"
-    },
-    {
-      "pattern": "{pizzaPieces_patternAny} {pizzaName_patternAny}",
-      "intent": "Ordering"
-    },
-    {
-      "pattern": "I want {pizzaPieces_patternAny} {pizzaName_patternAny}",
-      "intent": "Ordering"
-    },
-    {
-      "pattern": "{pizzaPieces_patternAny} x {pizzaName_patternAny}",
-      "intent": "Ordering"
-    },
-    {
-      "pattern": "{pizzaPieces_patternAny}x {pizzaName_patternAny}",
-      "intent": "Ordering"
-    },
-    {
-      "pattern": "{pizzaPieces_patternAny} times {pizzaName_patternAny}, please",
-      "intent": "Ordering"
-    },
-    {
-      "pattern": "{pizzaName_patternAny} x{pizzaPieces_patternAny}",
-      "intent": "Ordering"
-    }    
-  ],
-  "patternAnyEntities": [
-    {
-      "name": "pizzaName_patternAny",
-      "explicitList": [],
-      "roles": []
-    },
-    {
-      "name": "pizzaPieces_patternAny",
-      "explicitList": [],
-      "roles": []
-    }
-  ],
-  "prebuiltEntities": [],
-  "luis_schema_version": "3.0.0",
-  "versionId": "0.1",
-  "name": "basic-bot-LUIS",
-  "desc": "A BotBuilder generated bot",
-  "culture": "en-us"
+  "settings": []
 }

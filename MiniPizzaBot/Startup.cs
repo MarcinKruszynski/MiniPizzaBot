@@ -23,7 +23,7 @@ namespace MiniPizzaBot
     {
         private ILoggerFactory _loggerFactory;
         private readonly bool _isProduction;
-        public IHostingEnvironment _hostingEnvironment;
+        private IHostingEnvironment _hostingEnvironment;
 
         public Startup(IHostingEnvironment env)
         {

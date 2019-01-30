@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
@@ -17,6 +18,7 @@ namespace MiniPizzaBot
     public class MiniPizzaBotBot : IBot
     {
         private readonly ILogger _logger;
+        private IHostingEnvironment _hostingEnvironment;
 
         public const string OrderingIntent = "Ordering";
         public const string CancelIntent = "Cancel";
@@ -37,7 +39,7 @@ namespace MiniPizzaBot
         /// <param name="accessors">A class containing <see cref="IStatePropertyAccessor{T}"/> used to manage state.</param>
         /// <param name="loggerFactory">A <see cref="ILoggerFactory"/> that is hooked to the Azure App Service provider.</param>
         /// <seealso cref="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-2.1#windows-eventlog-provider"/>
-        public MiniPizzaBotBot(BotServices services, UserState userState, ConversationState conversationState, ILoggerFactory loggerFactory)
+        public MiniPizzaBotBot(BotServices services, UserState userState, ConversationState conversationState, ILoggerFactory loggerFactory, IHostingEnvironment env)
         {
             if (loggerFactory == null)
             {
@@ -46,6 +48,8 @@ namespace MiniPizzaBot
 
             _logger = loggerFactory.CreateLogger<MiniPizzaBotBot>();
             _logger.LogTrace("Turn start.");
+
+            _hostingEnvironment = env;
 
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _userState = userState ?? throw new ArgumentNullException(nameof(userState));
@@ -198,7 +202,11 @@ namespace MiniPizzaBot
 
         private Attachment CreateAdaptiveCardAttachment()
         {
-            var adaptiveCard = File.ReadAllText(@".\Dialogs\Welcome\Resources\welcomeCard.json");
+            //var adaptiveCard = File.ReadAllText(@".\Dialogs\Welcome\Resources\welcomeCard.json");
+
+            var filePath = Path.Combine(_hostingEnvironment.ContentRootPath, @"Dialogs\Welcome\Resources\welcomeCard.json");
+            var adaptiveCard = File.ReadAllText(filePath);
+
             return new Attachment()
             {
                 ContentType = "application/vnd.microsoft.card.adaptive",

@@ -2,6 +2,10 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/MiniPizzaBot",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:3978/",
       "sslPort": 0
@@ -9,11 +13,12 @@
   },
   "profiles": {
     "IIS Express": {
-      "commandName": "IISExpress",
+      "commandName": "IIS",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "ancmHostingModel": "InProcess"
     },
     "MiniPizzaBot": {
       "commandName": "Project",

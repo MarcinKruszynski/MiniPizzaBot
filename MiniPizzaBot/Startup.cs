@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using System;
+using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,10 +23,12 @@ namespace MiniPizzaBot
     {
         private ILoggerFactory _loggerFactory;
         private readonly bool _isProduction;
+        public IHostingEnvironment _hostingEnvironment;
 
         public Startup(IHostingEnvironment env)
         {
             _isProduction = env.IsProduction();
+            _hostingEnvironment = env;
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -56,7 +59,11 @@ namespace MiniPizzaBot
             var botFilePath = Configuration.GetSection("botFilePath")?.Value;
 
             // Loads .bot configuration file and adds a singleton that your Bot can access through dependency injection.
-            var botConfig = BotConfiguration.Load(botFilePath ?? @".\MiniPizzaBot.bot", secretKey);
+            //var botConfig = BotConfiguration.Load(botFilePath ?? @".\MiniPizzaBot.bot", secretKey);
+
+            var filePath = Path.Combine(_hostingEnvironment.ContentRootPath, "MiniPizzaBot.bot");
+            var botConfig = BotConfiguration.Load(filePath, secretKey);
+
             services.AddSingleton(sp => botConfig ?? throw new InvalidOperationException($"The .bot config file could not be loaded. ({botConfig})"));
 
 
@@ -116,7 +123,12 @@ namespace MiniPizzaBot
                    logger.LogError($"Exception caught : {exception}");
                    await context.SendActivityAsync("Sorry, it looks like something went wrong.");
                };
-            });            
+            });
+
+            services.Configure<IISServerOptions>(options =>
+            {
+                options.AutomaticAuthentication = false;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

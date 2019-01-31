@@ -149,7 +149,7 @@ namespace MiniPizzaBot
                         
                         if (member.Id != activity.Recipient.Id)
                         {
-                            var welcomeCard = CreateAdaptiveCardAttachment();
+                            var welcomeCard = GetHeroCard().ToAttachment(); // CreateAdaptiveCardAttachment();
                             var response = CreateResponse(activity, welcomeCard);
                             await dc.Context.SendActivityAsync(response);                          
                         }
@@ -212,6 +212,20 @@ namespace MiniPizzaBot
                 ContentType = "application/vnd.microsoft.card.adaptive",
                 Content = JsonConvert.DeserializeObject(adaptiveCard),
             };
+        }
+
+        private static HeroCard GetHeroCard()
+        {
+            var heroCard = new HeroCard
+            {
+                Title = "Pizza Bot",
+                Subtitle = "0.1 EN",
+                Text = "Today I am ordering a pizza at the Parma pizzeria",
+                Images = new List<CardImage> { new CardImage("https://cdn.pixabay.com/photo/2016/06/01/12/59/pizza-1428926_640.png") },
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Menu", value: "http://www.parmapizza.pl/menu/") },
+            };
+
+            return heroCard;
         }
 
         private async Task UpdateOrderingState(RecognizerResult luisResult, ITurnContext turnContext)

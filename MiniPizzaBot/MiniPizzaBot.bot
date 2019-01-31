@@ -5,9 +5,9 @@
     {
       "type": "endpoint",
       "name": "development",
-      "endpoint": "http://localhost/MiniPizzaBot/api/messages",
-      "appId": "",
-      "appPassword": "",
+      "endpoint": "https://31acda2b.ngrok.io/MiniPizzaBot/api/messages",
+      "appId": "d11e8ea0-d1f0-4ac8-bae9-9e48f46342a2",
+      "appPassword": "notTV04~cqihNHDIV290+]^",
       "id": "1"
     },
     {

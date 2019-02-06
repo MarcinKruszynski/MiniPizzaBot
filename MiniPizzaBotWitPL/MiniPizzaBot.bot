@@ -1,0 +1,16 @@
+﻿{
+  "name": "MiniPizzaBot",
+  "description": "",
+  "services": [
+    {
+      "type": "endpoint",
+      "name": "development",
+      "endpoint": "http://localhost/MiniPizzaBotWitPL/api/messages",
+      "appId": "",
+      "appPassword": "",
+      "id": "1"
+    }    
+  ],
+  "padlock": "",
+  "version": "2.0"
+}

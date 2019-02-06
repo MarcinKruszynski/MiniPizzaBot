@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniPizzaBot", "MiniPizzaBo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniPizzaBotWit", "MiniPizzaBotWit\MiniPizzaBotWit.csproj", "{A7B92E79-0FF7-425A-AB09-B7A86AF7D26F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniPizzaBotWitPL", "MiniPizzaBotWitPL\MiniPizzaBotWitPL.csproj", "{1DEE28C0-BB8F-426F-96E8-97E0B14A71C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A7B92E79-0FF7-425A-AB09-B7A86AF7D26F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7B92E79-0FF7-425A-AB09-B7A86AF7D26F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7B92E79-0FF7-425A-AB09-B7A86AF7D26F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DEE28C0-BB8F-426F-96E8-97E0B14A71C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DEE28C0-BB8F-426F-96E8-97E0B14A71C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DEE28C0-BB8F-426F-96E8-97E0B14A71C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DEE28C0-BB8F-426F-96E8-97E0B14A71C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

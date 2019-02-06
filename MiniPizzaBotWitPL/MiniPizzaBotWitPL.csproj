@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CognitiveModels\**" />
+    <Content Remove="CognitiveModels\**" />
+    <EmbeddedResource Remove="CognitiveModels\**" />
+    <None Remove="CognitiveModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="MiniPizzaBot.bot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.Bot.Builder" Version="4.2.2" />
+    <PackageReference Include="Microsoft.Bot.Builder.AI.Luis" Version="4.2.2" />
+    <PackageReference Include="Microsoft.Bot.Builder.Dialogs" Version="4.2.2" />
+    <PackageReference Include="Microsoft.Bot.Builder.Integration.AspNet.Core" Version="4.2.2" />
+    <PackageReference Include="Microsoft.Bot.Configuration" Version="4.2.2" />
+    <PackageReference Include="Microsoft.Bot.Connector" Version="4.2.2" />
+    <PackageReference Include="Microsoft.Bot.Schema" Version="4.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dialogs\Welcome\Resources\" />
+  </ItemGroup>
+</Project>
